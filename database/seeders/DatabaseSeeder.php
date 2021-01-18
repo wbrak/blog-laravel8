@@ -15,11 +15,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
+        /*DB::table('users')->insert([
             'role' => 'Admin',
             'name' => 'Admin Admin Admin',
             'email' => 'admin@admin.com',
             'password' => Hash::make('12345678'),
-        ]);
+        ]);*/
     }
 }
