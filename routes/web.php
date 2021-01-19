@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Frontpage;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -14,11 +15,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-// Blog routes
-Route::get('/', function () {
-    return view('welcome');
-});
 
 // Verify email routes
 Route::get('/email/verify', function () {
@@ -53,3 +49,7 @@ Route::group(['middleware' => [
 Route::get('/profile', function () {
     // Only verified users may access this route...
 })->middleware('verified')->name('profile');
+
+// Blog routes
+Route::get('/{urlslug}', Frontpage::class);
+Route::get('/', Frontpage::class);

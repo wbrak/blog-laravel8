@@ -16,6 +16,8 @@
                         <tr>
                             <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">{{ __('Title') }}</th>
                             <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">{{ __('Link') }}</th>
+                            <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">{{ __('Robots') }}</th>
+                            <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">{{ __('Status') }}</th>
                             <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">{{ __('Content') }}</th>
                             <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"></th>
                         </tr>
@@ -38,7 +40,9 @@
                                             {{ $item->slug }}
                                         </a>
                                     </td>
-                                    <td class="px-6 py-4 text-sm whitespace-no-wrap">{!! \Illuminate\Support\Str::limit($item->content, 50, '...') !!}</td>
+                                    <td class="px-6 py-4 text-sm whitespace-no-wrap">{{ $item->robots }}</td>
+                                    <td class="px-6 py-4 text-sm whitespace-no-wrap">{{ $item->status }}</td>
+                                    <td class="px-6 py-4 text-sm whitespace-no-wrap">{!! \Illuminate\Support\Str::limit($item->content, 70, '...') !!}</td>
                                     <td class="px-6 py-4 text-right text-sm">
                                         <x-jet-button wire:click="updateShowModal({{ $item->id }})">
                                             {{ __('Update') }}
@@ -76,6 +80,27 @@
                 @error('title') <span class="error">{{ $message }}</span> @enderror
             </div>
             <div class="mt-4">
+                <x-jet-label for="keywords" value="{{ __('Meta keywords (only if robots is index)') }}"></x-jet-label>
+                <x-jet-input id="keywords" class="block mt-1 w-full" type="text" wire:model.debounce.800ms="keywords"></x-jet-input>
+                @error('keywords') <span class="error">{{ $message }}</span> @enderror
+            </div>
+            <div class="mt-4">
+                <x-jet-label for="description" value="{{ __('Meta Description (only if robots is index)') }}"></x-jet-label>
+                <x-jet-input id="description" class="block mt-1 w-full" type="text" wire:model.debounce.800ms="description"></x-jet-input>
+                @error('description') <span class="error">{{ $message }}</span> @enderror
+            </div>
+            <div class="mt-4">
+                <x-jet-label for="robots" value="{{ __('Meta Robots') }}"></x-jet-label>
+                <label>
+                    <select wire:model="robots" class="block appearance-none w-full bg-gray-100 border border-gray-200 text-gray-700 py-3 px-4 pr-8 round leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                        <option value="NoIndex-NoFollow">Noindex, Nofollow</option>
+                        <option value="Index-Follow">Index, Follow</option>
+                        <option value="NoIndex-Follow">Noindex, Follow</option>
+                        <option value="Index-NoFollow">Index, Nofollow</option>
+                    </select>
+                </label>
+            </div>
+            <div class="mt-4">
                 <x-jet-label for="title" value="{{ __('Slug') }}"></x-jet-label>
                 <div class="mt-1 flex rounded-md shadow-sm">
                     <span class="inline-flex items-center px-3 rounded-1-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-base">
@@ -95,6 +120,15 @@
                 <label>
                     <input class="form-checkbox" type="checkbox" value="{{ $isSetToDefaultNotFoundPage }}" wire:model="isSetToDefaultNotFoundPage">
                     <span class="ml-2 text-sm text-red-600">Set as the default 404 error page</span>
+                </label>
+            </div>
+            <div class="mt-4">
+                <x-jet-label for="status" value="{{ __('Status') }}"></x-jet-label>
+                <label>
+                    <select wire:model="status" class="block appearance-none w-full bg-gray-100 border border-gray-200 text-gray-700 py-3 px-4 pr-8 round leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                        <option value="Disabled">Disabled</option>
+                        <option value="Activated">Activated</option>
+                    </select>
                 </label>
             </div>
             <div class="mt-4">

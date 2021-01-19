@@ -11,12 +11,17 @@ use Livewire\WithPagination;
 class Pages extends Component
 {
     use WithPagination;
+
     public $modalFormVisible = false;
     public $modalConfirmDeleteVisible = false;
     public $modelId;
-    public $slug;
     public $title;
+    public $slug;
     public $content;
+    public $status = 'Disabled';
+    public $keywords;
+    public $description;
+    public $robots = 'NoIndex-NoFollow';
     public $isSetToDefaultHomePage;
     public $isSetToDefaultNotFoundPage;
 
@@ -171,6 +176,10 @@ class Pages extends Component
         $this->title = $data->title;
         $this->slug = $data->slug;
         $this->content = $data->content;
+        $this->status = $data->status;
+        $this->keywords = $data->keywords;
+        $this->description = $data->description;
+        $this->robots = $data->robots;
         $this->isSetToDefaultHomePage = !$data->is_default_home ? null:true;
         $this->isSetToDefaultNotFoundPage = !$data->is_default_not_found ? null:true;
     }
@@ -187,6 +196,10 @@ class Pages extends Component
             'title' => $this->title,
             'slug' => $this->slug,
             'content' => $this->content,
+            'status' => $this->status,
+            'keywords' => $this->keywords,
+            'description' => $this->description,
+            'robots' => $this->robots,
             'is_default_home' => $this->isSetToDefaultHomePage,
             'is_default_not_found' => $this->isSetToDefaultNotFoundPage,
         ];
