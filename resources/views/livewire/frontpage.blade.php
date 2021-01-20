@@ -10,10 +10,10 @@
         </div>
         <div class="h-12 w-full flex items-center">
             <a href="{{ url('/')}}" class="w-full">
-                <img class="h-8" src="{{ url('/img/logo.svg')}}" />
+                <img class="h-16" src="{{ url('/img/logo.png')}}" />
             </a>
         </div>
-        <div class="flex justify-end sm:w-8/12">
+        <div class="flex justify-end sm:w-11/12">
             {{-- Top Navigation --}}
             <ul class="hidden sm:flex sm:text-left text-gray-200 text-lg">
                 @foreach ($topNavLinks as $item)
@@ -60,7 +60,7 @@
     </div>
     <footer class="bg-gray-900 text-gray-200">
         <div>
-            <ul class="text-xs text-gray-200 sm:text-base flex justify-center">
+            <ul class="text-xs text-gray-200 sm:text-lg flex justify-center">
                 @foreach ($footerNavLinks as $item)
                     <a href="{{ url('/'.$item->slug) }}"><li class="cursor-pointer px-4 py-2 hover:bg-gray-800">{{ $item->label }}</li></a>
                 @endforeach
