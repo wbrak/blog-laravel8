@@ -14,3 +14,7 @@
 .error {
     color: red;
 }
+
+.min-h-screen {
+    min-height: 90vh;
+}

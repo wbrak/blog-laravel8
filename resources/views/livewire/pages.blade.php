@@ -14,24 +14,24 @@
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead>
                         <tr>
-                            <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">{{ __('Title') }}</th>
-                            <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">{{ __('Link') }}</th>
-                            <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">{{ __('Robots') }}</th>
-                            <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">{{ __('Status') }}</th>
-                            <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">{{ __('Content') }}</th>
-                            <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"></th>
+                            <th class="px-6 py-3 bg-gray-50 text-center text-base leading-4 font-medium text-gray-500 uppercase tracking-wider">{{ __('Title') }}</th>
+                            <th class="px-6 py-3 bg-gray-50 text-center text-base leading-4 font-medium text-gray-500 uppercase tracking-wider">{{ __('Link') }}</th>
+                            <th class="px-6 py-3 bg-gray-50 text-center text-base leading-4 font-medium text-gray-500 uppercase tracking-wider">{{ __('Robots') }}</th>
+                            <th class="px-6 py-3 bg-gray-50 text-center text-base leading-4 font-medium text-gray-500 uppercase tracking-wider">{{ __('Status') }}</th>
+                            <th class="px-6 py-3 bg-gray-50 text-center text-base leading-4 font-medium text-gray-500 uppercase tracking-wider">{{ __('Content') }}</th>
+                            <th class="px-6 py-3 bg-gray-50 text-center text-base leading-4 font-medium text-gray-500 uppercase tracking-wider">{{ __('Actions') }}</th>
                         </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
                         @if ($data->count())
                             @foreach ($data as $item)
                                 <tr>
-                                    <td class="px-6 py-4 text-sm whitespace-no-wrap">
+                                    <td class="px-6 py-2 text-center">
                                         {{ $item->title }}
                                         {!! $item->is_default_home ? '<span class="text-green-400 text-xs font-bold">[Default Home Page]</span>':'' !!}
                                         {!! $item->is_default_not_found ? '<span class="text-red-400 text-xs font-bold">[Default 404 Page]</span>':'' !!}
                                     </td>
-                                    <td class="px-6 py-4 text-sm whitespace-no-wrap">
+                                    <td class="px-6 py-2 text-center">
                                         <a
                                             class="text-indigo-600 hover:text-indigo-900"
                                             target="_blank"
@@ -40,14 +40,14 @@
                                             {{ $item->slug }}
                                         </a>
                                     </td>
-                                    <td class="px-6 py-4 text-sm whitespace-no-wrap">{{ $item->robots }}</td>
-                                    <td class="px-6 py-4 text-sm whitespace-no-wrap">{{ $item->status }}</td>
-                                    <td class="px-6 py-4 text-sm whitespace-no-wrap">{!! \Illuminate\Support\Str::limit($item->content, 70, '...') !!}</td>
-                                    <td class="px-6 py-4 text-right text-sm">
+                                    <td class="px-6 py-2 text-center">{{ $item->robots }}</td>
+                                    <td class="px-6 py-2 text-center">{{ $item->status }}</td>
+                                    <td class="ppx-6 py-2 text-center">{!! \Illuminate\Support\Str::limit($item->content, 50, '...') !!}</td>
+                                    <td class="px-6 py-2 flex justify-end text-center">
                                         <x-jet-button wire:click="updateShowModal({{ $item->id }})">
                                             {{ __('Update') }}
                                         </x-jet-button>
-                                        <x-jet-danger-button wire:click="deleteShowModal({{ $item->id }})">
+                                        <x-jet-danger-button class="ml-2" wire:click="deleteShowModal({{ $item->id }})">
                                             {{ __('Delete') }}
                                         </x-jet-danger-button>
                                     </td>

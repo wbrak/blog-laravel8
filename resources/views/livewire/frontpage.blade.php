@@ -15,15 +15,15 @@
         </div>
         <div class="flex justify-end sm:w-8/12">
             {{-- Top Navigation --}}
-            <ul class="hidden sm:flex sm:text-left text-gray-200 text-xs">
+            <ul class="hidden sm:flex sm:text-left text-gray-200 text-lg">
                 @foreach ($topNavLinks as $item)
                     <a href="{{ url('/'.$item->slug) }}"><li class="cursor-pointer px-4 py-2 hover:bg-gray-800">{{ $item->label }}</li></a>
                 @endforeach
             </ul>
         </div>
     </nav>
-    <div class="sm:flex sm:min-h-screen">
-        <aside class="bg-gray-900 text-gray-700 divide-y divide-gray-700 divide-dashed sm:w-4/12 md:w-3/12 lg:w-2/12">
+    <div class="sm:flex min-h-screen">
+        <aside class="bg-gray-900 text-gray-700">
             {{-- Desktop Web View --}}
             <ul class="hidden text-gray-200 text-xs sm:block sm:text-left">
                 @foreach ($sidebarLinks as $item)
@@ -47,10 +47,9 @@
 
             </div>
         </aside>
-        <main class="bg-gray-100 p-12 min-h-screen sm:w-8/12 md:w-9/12 lg:w-10/12">
+        <main class="bg-gray-100 p-12 w-full">
             <section class="divide-y text-gray-900">
-                <div x-text="show == true ? 'True' : 'False'"></div>
-                <h1 class="text-3x1 font-bold">{{ $title }}</h1>
+                <h1 class="text-xl text-center font-bold">{{ $title }}</h1>
                 <article>
                     <div class="mt-5 text-sm">
                         {!! $content !!}
@@ -59,5 +58,14 @@
             </section>
         </main>
     </div>
+    <footer class="bg-gray-900 text-gray-200">
+        <div>
+            <ul class="hidden text-gray-200 text-lg sm:flex ml-96 space-x-40">
+                @foreach ($footerNavLinks as $item)
+                    <a href="{{ url('/'.$item->slug) }}"><li class="cursor-pointer px-4 py-2 hover:bg-gray-800">{{ $item->label }}</li></a>
+                @endforeach
+            </ul>
+        </div>
+    </footer>
 
 </div>

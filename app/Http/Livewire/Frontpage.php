@@ -76,6 +76,15 @@ class Frontpage extends Component
             ->get();
     }
 
+    private function footerNavLinks()
+    {
+        return DB::table('navigation_menus')
+            ->where('type', '=', 'FooterNav')
+            ->orderBy('sequence', 'asc')
+            ->orderBy('created_at', 'asc')
+            ->get();
+    }
+
     /**
      * The livewire render function.
      *
@@ -86,6 +95,7 @@ class Frontpage extends Component
         return view('livewire.frontpage', [
             'sidebarLinks' => $this->sideBarLinks(),
             'topNavLinks' => $this->topNavLinks(),
+            'footerNavLinks' => $this->footerNavLinks(),
         ])->layout('layouts.frontpage');
     }
 }
