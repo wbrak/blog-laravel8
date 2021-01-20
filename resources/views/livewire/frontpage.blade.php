@@ -60,11 +60,19 @@
     </div>
     <footer class="bg-gray-900 text-gray-200">
         <div>
-            <ul class="hidden text-gray-200 text-lg sm:flex ml-96 space-x-40">
+            <ul class="text-xs text-gray-200 sm:text-base flex justify-center">
                 @foreach ($footerNavLinks as $item)
                     <a href="{{ url('/'.$item->slug) }}"><li class="cursor-pointer px-4 py-2 hover:bg-gray-800">{{ $item->label }}</li></a>
                 @endforeach
             </ul>
+        </div>
+        <div class="text-xs sm:text-md sm:tracking-widest py-4 flex justify-center tracking-tighter">
+            <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">CreaTuWeb Copyright © </span>
+            <?php
+            $copyYear = 2002;
+            $curYear = date('Y');
+            echo $copyYear . (($copyYear != $curYear) ? '-' . $curYear : '');
+            ?><a xmlns:cc="http://creativecommons.org/ns#" href="https://alojatuweb.com" property="cc:attributionName" rel="cc:attributionURL"> AlojaTuWeb</a>. Licencia <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"> CC BY-SA 4.0</a>
         </div>
     </footer>
 
