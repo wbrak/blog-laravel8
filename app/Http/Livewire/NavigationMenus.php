@@ -17,7 +17,7 @@ class NavigationMenus extends Component
     public $label;
     public $slug;
     public $sequence = 1;
-    public $type = 'SidebarNav';
+    public $type = 'TopNav';
 
     /**
      * The validation rules
@@ -55,7 +55,7 @@ class NavigationMenus extends Component
      */
     public function read()
     {
-        return NavigationMenu::paginate(5);
+        return NavigationMenu::paginate(10);
     }
 
     /**

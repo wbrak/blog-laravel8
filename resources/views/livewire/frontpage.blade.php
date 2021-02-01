@@ -8,7 +8,7 @@
                 </svg>
             </button>
         </div>
-        <div class="h-12 w-full flex items-center">
+        <div class="h-12 w-210 flex items-center">
             <a href="{{ url('/')}}" class="w-full">
                 <img class="h-16" src="{{ url('/img/logo.png')}}" />
             </a>
@@ -23,9 +23,9 @@
         </div>
     </nav>
     <div class="sm:flex min-h-screen">
-        <aside class="bg-gray-900 text-gray-700">
+        <aside class="bg-gray-900 text-gray-700 divide-y divide-gray-700 divide-dashed sm:w-4/12 md:w-3/12 lg:w-2/12">
             {{-- Desktop Web View --}}
-            <ul class="hidden text-gray-200 text-xs sm:block sm:text-left">
+            <ul class="hidden text-gray-200 text-xl sm:block sm:text-left">
                 @foreach ($sidebarLinks as $item)
                     <a href="{{ url('/'.$item->slug) }}"><li class="cursor-pointer px-4 py-2 hover:bg-gray-800">{{ $item->label }}</li></a>
                 @endforeach
@@ -58,21 +58,21 @@
             </section>
         </main>
     </div>
-    <footer class="bg-gray-900 text-gray-200">
+    <footer class="bg-gray-900 text-gray-200 h-16">
         <div>
             <ul class="text-xs text-gray-200 sm:text-lg flex justify-center">
                 @foreach ($footerNavLinks as $item)
                     <a href="{{ url('/'.$item->slug) }}"><li class="cursor-pointer px-4 py-2 hover:bg-gray-800">{{ $item->label }}</li></a>
                 @endforeach
+                <div class="text-xs sm:text-md sm:tracking-widest py-4 flex justify-center tracking-tighter">
+                    <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">CreaTuWeb Copyright © </span>
+                    <?php
+                    $copyYear = 2002;
+                    $curYear = date('Y');
+                    echo $copyYear . (($copyYear != $curYear) ? '-' . $curYear : '');
+                    ?><a xmlns:cc="http://creativecommons.org/ns#" href="https://alojatuweb.com" property="cc:attributionName" rel="cc:attributionURL"> AlojaTuWeb</a>. Licencia <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"> CC BY-SA 4.0</a>
+                </div>
             </ul>
-        </div>
-        <div class="text-xs sm:text-md sm:tracking-widest py-4 flex justify-center tracking-tighter">
-            <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">CreaTuWeb Copyright © </span>
-            <?php
-            $copyYear = 2002;
-            $curYear = date('Y');
-            echo $copyYear . (($copyYear != $curYear) ? '-' . $curYear : '');
-            ?><a xmlns:cc="http://creativecommons.org/ns#" href="https://alojatuweb.com" property="cc:attributionName" rel="cc:attributionURL"> AlojaTuWeb</a>. Licencia <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"> CC BY-SA 4.0</a>
         </div>
     </footer>
 
