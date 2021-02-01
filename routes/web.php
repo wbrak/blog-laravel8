@@ -35,6 +35,7 @@ Route::post('/email/verification-notification', function (Request $request) {
 Route::group(['middleware' => [
     'auth:sanctum',
     'verified',
+    'access.role',
 ]], function () {
 
     Route::get('/dashboard', function () {
